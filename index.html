@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>vô coi nè hương</title>
+
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+        width:100vw; height:100vh;
+        background:#ffe6f2;
+        display:flex; justify-content:center; align-items:center;
+        font-family: Arial;
+        overflow:hidden;
+        padding:20px;
+    }
+
+    .text-box {
+        max-width: 600px;
+        background: #ffffffaa;
+        padding: 25px;
+        border-radius: 20px;
+        text-align: center;
+        font-size: 22px;
+        color:#ff4d6d;
+        box-shadow:0 10px 25px rgba(0,0,0,0.1);
+        animation: fade 1.2s ease-in-out;
+    }
+
+    @keyframes fade {
+        from { opacity:0; transform:translateY(15px); }
+        to { opacity:1; transform:translateY(0); }
+    }
+
+    /* Popup */
+    #popup {
+        position: fixed;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 85%; max-width: 400px;
+        background: #fff;
+        padding: 25px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        display: none;
+        animation: pop 0.35s ease-out;
+    }
+
+    @keyframes pop {
+        0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    button {
+        padding: 15px 25px;
+        font-size: 20px;
+        border:none;
+        border-radius:12px;
+        cursor:pointer;
+        font-weight:bold;
+    }
+
+    .yes { background:#ff5fa2; color:white; }
+    .no { background:#ffd1dc; color:#ff4d6d; }
+
+    .yes:hover { transform:scale(1.1); }
+    .no:hover { transform:scale(1.1); }
+
+    /* Trái tim rơi */
+    .heart {
+        position: fixed;
+        top: -10px;
+        font-size: 40px;
+        color: #ff3366;
+        animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+        to { transform: translateY(110vh); opacity:0; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="text-box" id="loveText">
+    Hương à…<br><br>
+    Tớ biết nói ra điều này có hơi bất ngờ, nhưng thật lòng tớ đã thích cậu từ lâu rồi.
+    Mỗi lần nói chuyện với cậu, mỗi khi thấy nụ cười của cậu, tớ lại thấy tim mình vui hơn một chút.
+    <br><br>
+    Tớ không dám nói trực tiếp vì sợ cậu ngại… nhưng hôm nay tớ muốn nói thật:
+    <br><br>
+    Tớ thích cậu — thích rất nhiều.  
+    <br><br>
+    Cậu có cho tớ một cơ hội để được quan tâm và làm cậu vui mỗi ngày không? ❤️
+</div>
+
+<!-- POPUP CÂU HỎI -->
+<div id="popup">
+    <h2 style="color:#ff4d6d; margin-bottom:10px;">Hương ơi… 💗</h2>
+    <p style="font-size:18px; margin-bottom:20px;">
+        Cậu có đồng ý làm người yêu tớ không? 🥺👉👈
+    </p>
+
+    <button class="yes" onclick="heartRain()">Đồng ý 💖</button>
+    <button class="no" onclick="alert('Huhu 😭 nhưng tớ vẫn thích cậu nhiều lắm…')">Không 💔</button>
+</div>
+
+<script>
+// Hiện popup sau khi đọc xong lời tỏ tình (3 giây)
+setTimeout(() => {
+    document.getElementById("popup").style.display = "block";
+}, 3000);
+
+
+// Hiệu ứng trái tim rơi
+function heartRain() {
+    for (let i = 0; i < 20; i++) {
+        let h = document.createElement("div");
+        h.classList.add("heart");
+        h.innerHTML = "❤️";
+        h.style.left = Math.random()*100 + "vw";
+        h.style.animationDuration = (2 + Math.random()*2) + "s";
+        document.body.appendChild(h);
+
+        setTimeout(() => h.remove(), 4000);
+    }
+
+    alert("Yes! ❤️ Cảm ơn cậu đã đồng ý!");
+}
+</script>
+
+</body>
+</html>
